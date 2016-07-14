@@ -1,0 +1,89 @@
+{% extends "mainPage/header.html" %}
+
+{% block content %}
+
+
+
+{% include "logins/includes/htmlsnippet.html" %}
+
+
+<div class="login-page">
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="/logins/mortLoginClick">Create an account</a></p>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+    <!--<div class="row">-->
+      <!--<div class="col s12 m5">-->
+        <!--<div class="card-panel grey lighten-4">-->
+          <!--<form class = 'navbar-form' method='POST' action=''>{% csrf_token %}-->
+
+                <!--<p style="font-size:130%;">UserID:</p>-->
+                <!--<div class='form-group'>-->
+                    <!--<input type="text" class="form-control" name="username"  placeholder="Username", size="25" />-->
+                <!--</div>-->
+
+                <!--<br>-->
+                <!--<p style="font-size:130%;">Password:</p>-->
+                <!--<div class='form-group'>-->
+                    <!--<input type="password" class="form-control" name="password"  placeholder="Password", size="25" />-->
+                <!--</div>-->
+
+                    <!--<br>-->
+                <!--<button type="submit" class="btn btn-default">Login</button>-->
+
+                <!--<br>-->
+                <!--<br>-->
+
+          <!--</form>-->
+          <!--</span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+
+
+
+
+
+
+<!--<form class = 'navbar-form' method='POST' action=''>{% csrf_token %}-->
+
+    <!--<p style="font-size:150%;">UserID:</p>-->
+	<!--<div class='form-group'>-->
+		<!--<input type="text" class="form-control" name="username"  placeholder="Username", size="25" />-->
+	<!--</div>-->
+
+    <!--<br>-->
+	<!--<p style="font-size:150%;">Password:</p>-->
+    <!--<div class='form-group'>-->
+		<!--<input type="password" class="form-control" name="password"  placeholder="Password", size="25" />-->
+	<!--</div>-->
+
+        <!--<br>-->
+	<!--<button type="submit" class="btn btn-default">Login</button>-->
+
+<!--</form>-->
+
+
+
+
+
+{% endblock %}
