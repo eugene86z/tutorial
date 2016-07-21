@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 # from logins.forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
-from .forms import UserForm
+from .forms import UserForm, loginForm
 
 
 
@@ -20,11 +20,46 @@ def mortgageLogin(request):
 	return render(request, 'logins/mortLogin.html')
 
 
-def mortLoginClick(request):
-	print ('test')
 
 
-	return render(request, 'logins/mortLogin.html')
+
+# def mortLoginClick(request):
+# 	print ('test')
+#
+#
+# 	return render(request, 'logins/mortLogin.html')
+
+
+
+
+
+
+
+
+
+class loginFormView(View):
+	form_class = loginForm
+	template_name =  'logins/mortLogin.html'
+
+
+	# display blank form
+	def get(self, request):
+		form = self.form_class(None)  # self is the userForm
+		return render(request, self.template_name, {'form': form})
+
+
+
+	# process form data
+	def post(self, request):
+		# print ('test')
+
+		form = self.form_class(request.POST)
+		return render(request, self.template_name, {'form': form})
+
+
+
+
+
 
 
 
@@ -33,7 +68,7 @@ def mortLoginClick(request):
 
 class UserFormView(View):
 	form_class = UserForm
-	template_name =  'logins/registration_form.html'
+	template_name =  'logins/registration_form_getMortgage.html'
 
 	#display blank form
 	def get(self, request):
@@ -43,7 +78,7 @@ class UserFormView(View):
 
 	# process form data
 	def post(self, request):
-		print ('test')
+		# print ('test')
 		form = self.form_class(request.POST)
 
 		if form.is_valid():  #no weird characters..
