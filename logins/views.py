@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 
-
+from django.core.urlresolvers import reverse
 
 from django.http import HttpResponseRedirect
 # from logins.forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm, loginForm
+from django.contrib import auth
 
 
 
@@ -22,12 +23,9 @@ def mortgageLogin(request):
 
 
 
-
-# def mortLoginClick(request):
-# 	print ('test')
-#
-#
-# 	return render(request, 'logins/mortLogin.html')
+def logoutClass(request):
+	auth.logout(request)
+	return HttpResponseRedirect('/logins/')
 
 
 
@@ -35,11 +33,12 @@ def mortgageLogin(request):
 
 
 
-
+#LOGIN  -  GET MORTGAGE
 
 class loginFormView(View):
 	form_class = loginForm
 	template_name =  'logins/mortLogin.html'
+
 
 
 	# display blank form
@@ -49,11 +48,36 @@ class loginFormView(View):
 
 
 
+
 	# process form data
 	def post(self, request):
-		# print ('test')
 
-		form = self.form_class(request.POST)
+		form = self.form_class(request.POST) #keep getting form not valid if username exists
+
+
+		if form.is_valid:
+
+			username = request.POST['username']
+			password = request.POST['password']
+			user = authenticate(username=username, password=password)
+
+			if user is not None:
+				if user.is_active:
+					print ('active')
+					login(request, user)
+					# m = Member.objects.get(user)
+					# request.session['member_id']
+					return HttpResponseRedirect('/getMortgage/')
+				else:
+					print('disabled account')
+					# Return a 'disabled account' error message
+			else:
+				print ('invalid login')
+
+		else:
+			print ('invalid form') #why
+
+
 		return render(request, self.template_name, {'form': form})
 
 
@@ -65,6 +89,7 @@ class loginFormView(View):
 
 
 
+#REGISTRATATION  -  GET MORTGAGE
 
 class UserFormView(View):
 	form_class = UserForm

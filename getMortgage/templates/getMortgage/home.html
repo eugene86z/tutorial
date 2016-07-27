@@ -1,0 +1,20 @@
+{% extends "mainPage/header.html" %}
+
+{% block content %}
+
+    {% include 'getMortgage/includes/topBar.html' %}
+
+
+    <h5>Welcome, {{ user.username }}.</h5>
+
+    <br>
+
+
+	{% for propertyInfo in object_list %}
+		<h5>{{ propertyInfo.address1 }}<a href="/getMortgage/{{propertyInfo.id}}">  {{ propertyInfo.status }}</a></h5>
+	{% endfor %}
+
+
+
+
+{% endblock %}	
