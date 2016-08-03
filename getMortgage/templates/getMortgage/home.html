@@ -4,17 +4,44 @@
 
     {% include 'getMortgage/includes/topBar.html' %}
 
-
+    <br>
     <h5>Welcome, {{ user.username }}.</h5>
 
     <br>
+    <br>
+
+    {% if categories %}
+
+	{% for propertyInfo in categories %}
 
 
-	{% for propertyInfo in object_list %}
-		<h5>{{ propertyInfo.address1 }}<a href="/getMortgage/{{propertyInfo.id}}">  {{ propertyInfo.status }}</a></h5>
+
+
+    <!--<div class="panel panel-default">-->
+    <div class="panel panel-custom1">
+
+
+            <a href="/getMortgage/{{propertyInfo.id}}">
+            <h5>{{ propertyInfo.address1 }}</h5>
+                <h5>{{ propertyInfo.City }}, {{ propertyInfo.State }} {{ propertyInfo.Zip }}</h5>
+
+            </a>
+                <br>
+                <p>{{ propertyInfo.status }}</p>
+
+
+
+    </div>
+
 	{% endfor %}
 
 
+    {% else %}
+        <!--<strong>There are no categories present.</strong>-->
+    {% endif %}
 
 
-{% endblock %}	
+    <br>
+    <br>
+
+{% endblock %}

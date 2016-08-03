@@ -1,0 +1,13 @@
+{% extends "mainPage/header.html" %}
+
+{% block content %}
+
+    {% include 'getMortgage/includes/topBar.html' %}
+
+
+    <h3>{{ propertyinfo.address1 }} </h3>
+    <h3>{{ propertyinfo.status }}</h3>
+    {{ propertyinfo.requestingAmount }}
+
+
+{% endblock %}

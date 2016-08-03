@@ -7,7 +7,8 @@ class propertyInfo(models.Model):
     City =  models.CharField(max_length=40)
     State = models.CharField(max_length=2)
     Zip =  models.CharField(max_length=10)
-    status = models.CharField(max_length=20, default='Not Active')
+    requestingAmount = models.IntegerField()
+    status = models.CharField(max_length=20, default='In Progress')
 
 
     def __str__(self):  #string representation
